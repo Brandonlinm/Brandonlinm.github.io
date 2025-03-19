@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>D Padre</title>
+    <title>Día del Padre</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -36,7 +36,7 @@
             border-radius: 10px;
             border: none;
             cursor: pointer;
-            transition: 0.3s;
+            transition: transform 0.1s ease;
         }
 
         #si {
@@ -62,24 +62,24 @@
     <script>
         const noBtn = document.getElementById("no");
         const siBtn = document.getElementById("si");
+        let scale = 1; // Tamaño inicial del botón "Sí"
 
-        // Función para mover el botón "No" a una posición aleatoria
-        function moverBoton() {
+        // Función para agrandar el botón "Sí"
+        function agrandarBoton() {
+            scale += 0.1; // Aumentar el tamaño en un 10%
+            siBtn.style.transform = `scale(${scale})`;
+        }
+
+        // Mover el botón "No" de manera aleatoria cuando el mouse pase por encima
+        noBtn.addEventListener("mouseover", () => {
             const x = Math.floor(Math.random() * (window.innerWidth - noBtn.clientWidth));
             const y = Math.floor(Math.random() * (window.innerHeight - noBtn.clientHeight));
             noBtn.style.left = x + "px";
             noBtn.style.top = y + "px";
-        }
-
-        // Mover el botón al pasar el ratón
-        noBtn.addEventListener("mouseover", moverBoton);
-
-        // Si logra hacer clic en "No", también se mueve y el "Sí" se agranda
-        noBtn.addEventListener("click", () => {
-            moverBoton();
-            siBtn.style.transform = "scale(1.2)";
         });
+
+        // Al hacer clic en "No", el botón "Sí" se agranda progresivamente
+        noBtn.addEventListener("click", agrandarBoton);
     </script>
 </body>
 </html>
-
